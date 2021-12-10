@@ -17,6 +17,13 @@ class CustomUser(AbstractUser):
     profiles = models.ManyToManyField('Profile')
 
 
+class Profile(models.Model):
+    name = models.CharField(max_length=225)
+    age_limit = models.CharField(max_length=5, choices=AGE_CHOICES)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+
+    def __str__(self):
+        return self.name + " " + self.age_limit
 
 
 class Movie(models.Model):
